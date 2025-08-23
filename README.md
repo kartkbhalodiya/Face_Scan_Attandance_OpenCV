@@ -21,24 +21,25 @@ Follow these steps to get the project up and running on your local machine.
 
 1. Clone the repository:
 
-git clone https://github.com/kartkbhalodiya/Face_Scan_Attandance_OpenCV.git
-cd Face_Scan_Attandance_OpenCV
+        git clone https://github.com/kartkbhalodiya/Face_Scan_Attandance_OpenCV.git
+
+        cd Face_Scan_Attandance_OpenCV
 
 2. Create and activate a virtual environment:
 
-Windows:
+    Windows:
 
-python -m venv venv
-.\venv\Scripts\activate
+        python -m venv venv
+       .\venv\Scripts\activate
 
-macOS / Linux:
+    macOS / Linux:
 
-python3 -m venv venv
-source venv/bin/activate
+       python3 -m venv venv
+       source venv/bin/activate
 
 3. Install the dependencies:
 
-pip install -r requirements.txt
+       pip install -r requirements.txt
 
 (Note: You may need to create a requirements.txt file by running pip freeze > requirements.txt in your current project setup)
 
@@ -51,37 +52,32 @@ python manage.py runserver
 Navigate to http://127.0.0.1:8000/ to see the application in action.
 
 📖 How to Use
-1. 🎓 Register a New Student
-Navigate to the 'Register Students' section.
+  
+   1. 🎓 Register a New Student
+   Navigate to the 'Register Students' section.
 
-Enter the student's Name and ID.
+   Enter the student's Name and ID.
 
-Press the Spacebar to capture snapshots and Esc to finish.
+   Press the Spacebar to capture snapshots and Esc to finish.
 
 2. ✅ Take Attendance
-Go to the 'Take Attendance' section.
 
-The camera will activate, automatically recognizing registered faces and marking their attendance.
+   Go to the 'Take Attendance' section.
+
+   The camera will activate, automatically recognizing registered faces and marking their attendance.
 
 3. 📊 View Records
-Access the 'Admin' section to see all logged attendance.
 
-Username: admin
+    Access the 'Admin' section to see all logged attendance.
 
-Password: admin123
+       Username: admin
+
+       Password: admin123
 
 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-Fork the Project
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-Push to the Branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
 
 📄 License
 This project is distributed under the MIT License. See LICENSE for more information.
