@@ -48,7 +48,10 @@ macOS / Linux:
 
 5. Open your browser:
 
-Navigate to http://12previ7.0.0.1:8000/ to see the application in action.
+Navigate to see the application in action.
+               
+       http://127.0.0.1:8000/ 
+
 
 📖 How to Use
 1. 🎓 Register a New Student
