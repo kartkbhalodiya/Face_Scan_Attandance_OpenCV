@@ -14,7 +14,7 @@ A robust and efficient attendance system that uses facial recognition to mark at
 
 📄 Excel Export: Export attendance records to an Excel spreadsheet for easy record-keeping and analysis.
 
-🚀 Scalable Architecture: Built on the powerful Django web framework.
+🚀 Scalable Architecture: Built on the powerful Flask web framework.
 
 🛠️ Installation & Setup
 Follow these steps to get the project up and running on your local machine.
