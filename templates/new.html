@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FRAMS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Popper.js for positioning the popover -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <style>
+        /* Custom styles and animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg-dark {
+            background: linear-gradient(-45deg, #759af2, #8992f8, #5576e4, #91beda);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Applying animations */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-pop-in {
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        .animate-slide-up {
+           animation: slideUp 0.6s ease-out forwards;
+           opacity: 0;
+        }
+    </style>
+</head>
+<body class="gradient-bg-dark text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900/50 backdrop-blur-lg shadow-lg sticky top-0 z-50 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="../static/Parul University Logo Vector.svg .png" class="h-10 w-30 rounded-full" alt="Icon">
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#home" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                    <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact Us</a>
+                    <a href="/how" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center text-center p-4">
+        <!-- New Collage Logo -->
+        <div class="mb-6 animate-pop-in" style="animation-delay: 0.2s;">
+            <span class="inline-block p-3 bg-gray-700 rounded-full">
+                <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 2L6 18V50L32 62L58 50V18L32 2Z" fill="#4f46e5"/>
+                    <path d="M32 2L6 18V50L32 62" fill="#3730a3"/>
+                    <path d="M32 12L14 22V46L32 56L50 46V22L32 12Z" fill="#818cf8"/>
+                    <path d="M32 12L14 22V46L32 56" fill="#6366f1"/>
+                </svg>
+            </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black mb-6 animate-slide-up" style="animation-delay: 0.4s;">
+            Face Recognition Based<br>Attendance Management System
+        </h1>
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+            <form action="/new" method="POST" class="animate-slide-up" style="animation-delay: 0.6s;">
+                <button type="submit" class="w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600/50 transform hover:scale-105">Register New Student</button>
+            </form>
+            <form action="#" method="post" class="animate-slide-up" style="animation-delay: 0.8s;">
+                <button type="submit" class="w-full sm:w-auto bg-gray-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-600/50 transform hover:scale-105">Punch your Attendance</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-3xl mx-auto bg-gray-800/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-12 animate-fade-in">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold">Contact Us</h2>
+                <p class="text-gray-400 mt-2">Your feedback is valuable. Please write to us.</p>
+            </div>
+            <form action="https://formspree.io/f/manqrykv" method="POST" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-lg font-medium text-gray-300 mb-1">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Your Name" class="w-full bg-gray-700/80 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 hover:border-blue-500">
+                </div>
+                <div>
+                    <label for="e-mail" class="block text-lg font-medium text-gray-300 mb-1">E-mail:</label>
+                    <input type="email" name="email" id="e-mail" placeholder="Enter Your E-mail" class="w-full bg-gray-700/80 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 hover:border-blue-500">
+                </div>
+                <div>
+                    <label for="phone" class="block text-lg font-medium text-gray-300 mb-1">Contact No:</label>
+                    <input type="number" name="phone" id="phone" placeholder="Enter Your Contact Number" class="w-full bg-gray-700/80 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 hover:border-blue-500">
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-medium text-gray-300 mb-1">Feedback:</label>
+                    <textarea name="message" id="message" rows="5" placeholder="Your feedback..." class="w-full bg-gray-700/80 border-2 border-gray-600 rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 hover:border-blue-500"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600/50 transform hover:scale-105">Submit</button>
+                </div>
+            </form>
+            <!-- Get Help Section with Popover -->
+            <div class="text-center mt-8 pt-6 border-t border-gray-700">
+                <h3 class="text-lg font-bold text-gray-300">Get Help</h3>
+                <a href="#" id="popover-button" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 underline">Click me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-center py-4">
+        <div class="text-gray-400">
+            Copyright &copy; krushit kaneriya 2025. All rights reserved!
+        </div>
+    </footer>
+
+    <!-- Popover element -->
+    <div id="popover-content" class="hidden absolute bg-gray-900/80 backdrop-blur-lg text-white text-sm rounded-lg shadow-lg p-3 max-w-xs z-50 transition-opacity duration-300 opacity-0">
+        Click anywhere in the document to close this popover.
+        <div id="arrow" class="absolute bg-inherit w-2 h-2 rotate-45" data-popper-arrow></div>
+    </div>
+
+    <script>
+        const popoverButton = document.querySelector('#popover-button');
+        const popoverContent = document.querySelector('#popover-content');
+        const arrow = document.querySelector('#arrow');
+
+        let popperInstance = null;
+
+        function createPopper() {
+            popperInstance = Popper.createPopper(popoverButton, popoverContent, {
+                placement: 'top',
+                modifiers: [
+                    { name: 'offset', options: { offset: [0, 8] } },
+                    { name: 'arrow', options: { element: arrow } },
+                ],
+            });
+        }
+
+        function destroyPopper() {
+            if (popperInstance) {
+                popperInstance.destroy();
+                popperInstance = null;
+            }
+        }
+
+        function showPopover(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            popoverContent.classList.remove('hidden');
+            popoverContent.classList.remove('opacity-0');
+            createPopper();
+        }
+
+        function hidePopover() {
+            popoverContent.classList.add('opacity-0');
+            setTimeout(() => {
+                 popoverContent.classList.add('hidden');
+                 destroyPopper();
+            }, 300); // Match transition duration
+        }
+        
+        popoverButton.addEventListener('click', showPopover);
+        
+        document.addEventListener('click', (e) => {
+            if (!popoverContent.classList.contains('hidden') && !popoverButton.contains(e.target)) {
+                hidePopover();
+            }
+        });
+
+    </script>
+
+</body>
+</html>

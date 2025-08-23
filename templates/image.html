@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captured!</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg-dark {
+          background: linear-gradient(-45deg, #759af2, #8992f8, #5576e4, #91beda);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframes for general element animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Applying animations with delays */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-pop-in {
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        .animate-slide-up {
+           animation: slideUp 0.6s ease-out forwards;
+           opacity: 0;
+        }
+
+        /* Styles and keyframes for the animated success icon */
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+        }
+        .success-checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #4ade80; /* green-400 */
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+        }
+        .success-checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke-width: 4;
+            stroke: #4ade80; /* green-400 */
+            fill: none;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 1s forwards;
+        }
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg-dark">
+
+    <!-- Main container -->
+    <main class="min-h-screen w-full flex items-center justify-center p-4">
+        <!-- Content card with animations -->
+        <div class="bg-gray-800/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-12 text-center text-white max-w-lg w-full animate-fade-in">
+            
+            <!-- Logo Container -->
+            <div class="flex flex-col items-center gap-4">
+                <!-- Square Camera Logo -->
+                <div class="w-24 h-24 bg-gray-700 rounded-2xl flex items-center justify-center animate-pop-in" style="animation-delay: 0.1s;">
+                    <svg class="w-16 h-16 text-blue-400" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M52 16H42.6667L37.3333 8H26.6667L21.3333 16H12C9.79086 16 8 17.7909 8 20V48C8 50.2091 9.79086 52 12 52H52C54.2091 52 56 50.2091 56 48V20C56 17.7909 54.2091 16 52 16Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                
+                <!-- Animated Success Logo -->
+                <div class="animate-pop-in" style="animation-delay: 0.3s;">
+                    <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="success-checkmark__circle" cx="26" cy="26" r="25" />
+                        <path class="success-checkmark__check" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Main Heading -->
+            <h1 class="text-4xl md:text-5xl font-black my-8 animate-slide-up" style="animation-delay: 0.5s;">
+                Image Captured!
+            </h1>
+            
+            <!-- Action Button -->
+            <form action="/" method="GET" class="animate-slide-up" style="animation-delay: 0.7s;">
+                <button class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-600/50">
+                    Go to Main Page
+                </button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

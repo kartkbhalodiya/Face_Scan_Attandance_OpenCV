@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg-dark {
+            background: linear-gradient(-45deg, #759af2, #8992f8, #5576e4, #91beda);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Applying animations with delays */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Staggered slide-up animation for form elements */
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="gradient-bg-dark">
+
+    <!-- Main container -->
+    <main class="min-h-screen w-full flex items-center justify-center p-4">
+        <!-- Content card -->
+        <div class="bg-gray-800/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-12 text-white w-full max-w-4xl animate-fade-in">
+            
+            <!-- Header with Icon and Title -->
+            <div class="flex flex-col items-center text-center mb-8">
+                <div class="mb-4 animate-slide-up" style="animation-delay: 0.1s;">
+                    <span class="inline-block p-4 bg-gray-700 rounded-full">
+                        <!-- Iconic representation of a database/list -->
+                        <svg class="w-12 h-12 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125h17.25c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h-1.5m1.5 0h1.5m-1.5 0p-1.5m2.25-6.75l.5-2.25m0 0l.5-2.25m-1.5 4.5l-1.5-4.5m1.5 4.5l.5-2.25m.5-2.25l1.5-4.5m-3 9l1.5-4.5m-1.5 4.5l-1.5-4.5m1.5 4.5l1.5-4.5m6.75-3.75l.5-2.25m0 0l.5-2.25m-1.5 4.5l-1.5-4.5M12 12.75l1.5-4.5m-1.5 4.5l-1.5-4.5m1.5 4.5l1.5-4.5m6.75-3.75l.5-2.25m0 0l.5-2.25m-1.5 4.5l-1.5-4.5M18.75 12.75l1.5-4.5m-1.5 4.5l-1.5-4.5m1.5 4.5l1.5-4.5M6.375 6.375l.5-2.25m0 0l.5-2.25m-1.5 4.5l-1.5-4.5m1.5 4.5l.5-2.25m.5-2.25l1.5-4.5m-3 9l1.5-4.5m-1.5 4.5l-1.5-4.5m1.5 4.5l1.5-4.5" />
+                        </svg>
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold animate-slide-up" style="animation-delay: 0.2s;">Today's Attendance</h1>
+                <p class="text-gray-400 mt-2 animate-slide-up" style="animation-delay: 0.3s;">Details of students present today.</p>
+            </div>
+
+            <!-- Attendance Table -->
+            <div class="overflow-x-auto animate-slide-up" style="animation-delay: 0.4s;">
+                <table class="w-full text-left table-auto">
+                    <thead>
+                        <tr class="bg-gray-700/50 border-b border-gray-600">
+                            <th class="p-4">Name</th>
+                            <th class="p-4">Time</th>
+                            <th class="p-4">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        {% for row in rows %}  
+                        <tr class="hover:bg-gray-700/50 transition-colors">  
+                            <td class="p-4">{{row["NAME"]}}</td>  
+                            <td class="p-4">{{row["Time"]}}</td>  
+                            <td class="p-4">{{row["Date"]}}</td>  
+                        </tr>  
+                        {% endfor %}  
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style="animation-delay: 0.5s;">
+                <form action="/whole" method="post" class="w-full sm:w-auto">
+                    <button class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600/50 transform hover:scale-105">
+                        View Whole Database
+                    </button>
+                </form>
+                <form action="/" method="GET" class="w-full sm:w-auto">
+                    <button class="w-full bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-600/50 transform hover:scale-105">
+                        Go Back to Home Page
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

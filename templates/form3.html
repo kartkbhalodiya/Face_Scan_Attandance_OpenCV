@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Database</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg-dark {
+             background: linear-gradient(-45deg, #759af2, #8992f8, #5576e4, #91beda);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Applying animations with delays */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Staggered slide-up animation for form elements */
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="gradient-bg-dark">
+
+    <main class="min-h-screen w-full flex items-center justify-center p-4">
+        <div class="bg-gray-800/70 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-12 text-white w-full max-w-5xl animate-fade-in">
+            
+            <div class="flex flex-col items-center text-center mb-8">
+                <div class="mb-4 animate-slide-up" style="animation-delay: 0.1s;">
+                    <span class="inline-block p-4 bg-gray-700 rounded-full">
+                        <svg class="w-12 h-12 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                        </svg>
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold animate-slide-up" style="animation-delay: 0.2s;">Whole Database</h1>
+                <p class="text-gray-400 mt-2 animate-slide-up" style="animation-delay: 0.3s;">Student's full attendance record.</p>
+            </div>
+
+            <div id="attendanceTableContainer" class="overflow-x-auto animate-slide-up" style="animation-delay: 0.4s;">
+                <table id="attendanceTable" class="w-full text-left table-auto">
+                    <thead>
+                        <tr class="bg-gray-700/50 border-b border-gray-600">
+                            <th class="p-4 font-bold">Name</th>
+                            <th class="p-4 font-bold">Time</th>
+                            <th class="p-4 font-bold">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        {% for row in rows %}  
+                        <tr class="hover:bg-gray-700/50 transition-colors">  
+                            <td class="p-4 font-bold">{{row["NAME"]}}</td>  
+                            <td class="p-4 font-bold">{{row["Time"]}}</td>  
+                            <td class="p-4 font-bold">{{row["Date"]}}</td>  
+                        </tr>  
+                        {% endfor %}  
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-between w-full gap-4 animate-slide-up" style="animation-delay: 0.5s;">
+                <form action="/" method="GET" class="w-full sm:w-auto">
+                    <button type="submit" class="w-full bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-600/50 transform hover:scale-105">
+                        Go Back to Home Page
+                    </button>
+                </form>
+
+                <div class="flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto">
+                    <button title="Download as PDF" onclick="downloadAs('pdf')" class="flex items-center justify-center gap-2 w-full sm:w-auto bg-red-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:bg--700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-600/50 transform hover:scale-105">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.267 14.68c-.184 0-.399-.054-.576-.126-.412-.195-.655-.48-.655-.913V4.326a1 1 0 0 1 .993-.993H14a1 1 0 0 1 1 1v2.326a1 1 0 1 1-2 0V5.326h-1.745v8.2c0 .645.547.854.993.854.445 0 .992-.209.992-.854V11.27a1 1 0 1 1 2 0v2.247c0 .874-.827 1.378-1.956 1.378h-.445c-.253 0-.538-.054-.747-.117a.999.999 0 0 1-.366-.23Zm10.732-5.443c0-2.4-1.72-3.46-4.032-3.46-2.313 0-4.033 1.059-4.033 3.46s1.72 3.46 4.033 3.46c2.312 0 4.032-1.06 4.032-3.46Zm-1.804 0c0 1.432-.993 2.19-2.228 2.19s-2.228-.758-2.228-2.19.993-2.19 2.228-2.19c1.235 0 2.228.758 2.228 2.19ZM20 16a1 1 0 0 1-1 1h-2v2a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2Zm-2-1h1v-1h-1v1ZM4 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4Z"/></svg>
+                        <span class="hidden sm:inline">PDF</span>
+                    </button>
+
+                    <button title="Download as Excel" onclick="downloadAs('excel')" class="flex items-center justify-center gap-2 w-full sm:w-auto bg-green-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-600/50 transform hover:scale-105">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm-2 16h-2v-2h2v2Zm0-4h-2v-2h2v2Zm0-4h-2V8h2v2Zm4 8h-2v-2h2v2Zm0-4h-2v-2h2v2Zm0-4h-2v-2h2v2Zm-5-4V3.5L18.5 9H13a1 1 0 0 1-1-1Z"/></svg>
+                        <span class="hidden sm:inline">Excel</span>
+                    </button>
+
+                    <button title="Download as JPG" onclick="downloadAs('jpg')" class="flex items-center justify-center gap-2 w-full sm:w-auto bg-indigo-500 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:bg-indigo-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/50 transform hover:scale-105">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2ZM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM8.5 12c.414 0 .75.336.75.75v1.5a.75.75 0 0 1-1.5 0v-1.5c0-.414.336-.75.75-.75Zm3.5 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5Zm4.25 1.5a.75.75 0 0 0-1.5 0v1.5c0 .414.336.75.75.75s.75-.336.75-.75v-1.5Z"/></svg>
+                        <span class="hidden sm:inline">JPG</span>
+                    </button>
+
+                    <button title="Download as Word" onclick="downloadAs('word')" class="flex items-center justify-center gap-2 w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600/50 transform hover:scale-105">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm-2.25 14H9.75v-4.075l-1.925 1.9L6.5 12.5l4-4 4 4-1.325 1.325-1.925-1.9V16ZM13 9V3.5L18.5 9H13Z"/></svg>
+                        <span class="hidden sm:inline">Word</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // NOTE: This is a placeholder script.
+        // Real implementation requires specific JavaScript libraries for file generation.
+        // For example: jsPDF for PDFs, SheetJS for Excel, html2canvas for JPGs, etc.
+        function downloadAs(format) {
+            alert(`Initializing download as ${format.toUpperCase()}... \n(This is a demo. Full functionality requires implementation.)`);
+            
+            // Example of how you might implement this with libraries:
+            switch(format) {
+                case 'pdf':
+                    // Add jsPDF library to your project to use this
+                    // const { jsPDF } = window.jspdf;
+                    // const doc = new jsPDF();
+                    // doc.autoTable({ html: '#attendanceTable' });
+                    // doc.save('attendance-record.pdf');
+                    console.log("PDF download logic would go here.");
+                    break;
+                case 'excel':
+                    // Add SheetJS (xlsx) library to use this
+                    // const table = document.getElementById('attendanceTable');
+                    // const wb = XLSX.utils.table_to_book(table, {sheet: "Attendance"});
+                    // XLSX.writeFile(wb, "attendance-record.xlsx");
+                    console.log("Excel download logic would go here.");
+                    break;
+                case 'jpg':
+                    // Add html2canvas library to use this
+                    // const tableContainer = document.getElementById('attendanceTableContainer');
+                    // html2canvas(tableContainer).then(canvas => {
+                    //     const link = document.createElement('a');
+                    //     link.href = canvas.toDataURL('image/jpeg');
+                    //     link.download = 'attendance-record.jpg';
+                    //     link.click();
+                    // });
+                    console.log("JPG download logic would go here.");
+                    break;
+                case 'word':
+                    // This is more complex and often requires a library like 'html-to-docx' or a server-side solution.
+                    console.log("Word (.docx) download logic would go here.");
+                    break;
+            }
+        }
+    </script>
+
+</body>
+</html>
