@@ -44,7 +44,7 @@ def name():
             elif k % 256 == 32:
                 # SPACE pressed
                 img_name = name1 + ".png"
-                path ="C:\\Users\\bhalo\\Desktop\\face-recognition-attendance-management-system-with-PowerBI-dashboard-main\\Training Images"
+                path ="Training images"
                 cv2.imwrite(os.path.join(path, img_name), frame)
                 print("{} written!".format(img_name))
 
